@@ -5,17 +5,9 @@ var track = require("./lib/tracking");
 var $ = require("jquery");
 var ich = require("icanhaz");
 var Share = require("share");
-// var questionTemplate = require("./_questionTemplate.html");
-// var resultTemplate = require("./_resultTemplate.html");
-// var overviewTemplate = require("./_overviewTemplate.html");
 
 var score = 0;
 var id = 1;
-
-// Set up templates
-// ich.addTemplate("questionTemplate", questionTemplate);
-// ich.addTemplate("resultTemplate", resultTemplate);
-// ich.addTemplate("overviewTemplate", overviewTemplate);
 
 var Share = require("share");
 new Share(".share-button", {
@@ -33,29 +25,7 @@ new Share(".share-button", {
 
 //create new question from template
 var showQuestion = function(questionId) {
-  $(".question-box").html(`
-    <div class="inner">
-      <div class="map">
-        <img src="./assets/map/{{image}}">
-      </div>
-
-      <div class="question-inner">
-        <div class="question">
-          <div class="index"></div>
-          How do you say ... <span class="highlight">{{place}}?</span></div>
-
-        {{#answers}}
-          <p class="option">
-            <input type="radio" value="{{correct}}" name="answer" id="{{id}}">
-            <label for="{{id}}">{{answer}}</label> <i class="listen fa fa-volume-up"></i>
-            <audio src="./assets/new/{{audio}}"></audio>
-          </p>
-        {{/answers}}
-
-        <button class="submit" disabled><i class="fa fa-check"></i> Submit</button>
-      </div>
-    </div>
-  `);
+  $(".question-box").html(require("./questionTemplate.js")(quizData[id]));
   $(".index").html(id + " of " + Object.keys(quizData).length);
 };
 
@@ -87,31 +57,7 @@ $(".quiz-container").on("click", ".submit", function() {
     }
   });
 
-  $(".question-box").html(`
-    <div class="inner">
-      <div class="map">
-        <img src="./assets/map/{{image}}">
-      </div>
-
-      <div class="question-inner">
-        <div class="answer">
-          <div class="index"></div>
-          <span class="highlight correct">{{#hooray}}Right!{{/hooray}}</span>
-          <span class="highlight wrong">{{^hooray}}Wrong.{{/hooray}}</span>
-
-          <div class="answer-box">
-            <span class="correct-answer">
-              {{place}} is pronounced “{{correct}}” <i class="listen fa fa-volume-up"></i>
-              <audio src="./assets/{{audio}}"></audio>
-            </span>
-            <div class="description">{{description}}</div>
-          </div>
-        </div>
-
-        <button class="next active">Next question <i class="fa fa-arrow-right"></i></button>
-      </div>
-    </div>
-  `);
+  $(".question-box").html(require("./resultTemplate.js")(answerData));
   $(".index").html(id + " of " + Object.keys(quizData).length);
 
   // Change button text on last question
@@ -161,18 +107,7 @@ var calculateResult = function() {
           }
         }
       });
-      $(".question-box").html(`
-        <div class="overview inner">
-          <p class="result-name">You scored <span class="result" style="color: {{color}}">{{score}}/12</span>. Your level: <span class="result" style="color: {{color}}">{{title}}</span>.
-
-          <p class="result-description">{{description}}
-
-          <div class="results-image">
-            <img src="./assets/results/{{image}}">
-            <p class="photo-credit">{{photographer}} / The Seattle Times</p>
-          </div>
-        </div>
-      `);
+      $(".question-box").html(require("./overviewTemplate.js")(result);
     }
   }
 };

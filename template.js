@@ -18,7 +18,7 @@ exports.template = function(grunt, init, done) {
     props.s3_secret = process.env.AWS_SECRET_ACCESS_KEY || "";
     props.s3_region = process.env.AWS_DEFAULT_REGION || "us-west-1";
     props.github_repo = "seattletimes/" + here;
-    props.s3_path = [new Date().getFullYear(), "sports", props.app_name].join("/");
+    props.s3_path = [new Date().getFullYear(), "quizzes", props.app_name].join("/");
 
     var root = init.filesToCopy(props);
     init.copyAndProcess(root, props, {noProcess: "src/assets/**"});
