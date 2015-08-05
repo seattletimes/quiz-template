@@ -5,9 +5,17 @@ var track = require("./lib/tracking");
 var $ = require("jquery");
 var ich = require("icanhaz");
 var Share = require("share");
+var questionTemplate = require("./_questionTemplate.html");
+var resultTemplate = require("./_resultTemplate.html");
+var overviewTemplate = require("./_overviewTemplate.html");
 
 var score = 0;
 var id = 1;
+
+// Set up templates
+ich.addTemplate("questionTemplate", questionTemplate);
+ich.addTemplate("resultTemplate", resultTemplate);
+ich.addTemplate("overviewTemplate", overviewTemplate);
 
 var Share = require("share");
 new Share(".share-button", {
@@ -25,7 +33,7 @@ new Share(".share-button", {
 
 //create new question from template
 var showQuestion = function(questionId) {
-  $(".question-box").html(require("./questionTemplate.js")(quizData[id]));
+  $(".question-box").html(ich.questionTemplate(quizData[id]));
   $(".index").html(id + " of " + Object.keys(quizData).length);
 };
 
@@ -57,7 +65,7 @@ $(".quiz-container").on("click", ".submit", function() {
     }
   });
 
-  $(".question-box").html(require("./resultTemplate.js")(answerData));
+  $(".question-box").html(ich.resultTemplate(answerData));
   $(".index").html(id + " of " + Object.keys(quizData).length);
 
   // Change button text on last question
@@ -107,7 +115,7 @@ var calculateResult = function() {
           }
         }
       });
-      $(".question-box").html(require("./overviewTemplate.js")(result);
+      $(".question-box").html(ich.overviewTemplate(result));
     }
   }
 };

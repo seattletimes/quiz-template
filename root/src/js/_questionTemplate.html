@@ -1,0 +1,21 @@
+<div class="inner">
+  <div class="map">
+    <img src="./assets/map/{{image}}">
+  </div>
+
+  <div class="question-inner">
+    <div class="question">
+      <div class="index"></div>
+      How do you say ... <span class="highlight">{{place}}?</span></div>
+
+    {{#answers}}
+      <p class="option">
+        <input type="radio" value="{{correct}}" name="answer" id="{{id}}">
+        <label for="{{id}}">{{answer}}</label> <i class="listen fa fa-volume-up"></i>
+        <audio src="./assets/new/{{audio}}"></audio>
+      </p>
+    {{/answers}}
+
+    <button class="submit" disabled><i class="fa fa-check"></i> Submit</button>
+  </div>
+</div>

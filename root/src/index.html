@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href='http://fonts.googleapis.com/css?family=Paytone+One:700,400,300' rel='stylesheet' type='text/css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <%= t.include("partials/_adHead.html") %>
   </head>
   <body>
@@ -23,13 +24,13 @@
 
         <h1 class="title">
 
-          TITLE GOES HERE
+          Title goes here
 
         </h1>
 
         <p class="chatter">
 
-          CHATTER GOES HERE
+          Chatter goes here
 
           <a class="share-button"></a>
         </p>
@@ -48,16 +49,16 @@
 
         <div class="credits">
 
-          FIRST CREDIT by <span class="credit-name">AUTHOR</span> 
+          First credit by <span class="credit-name">Author Name(s)</span> 
 
           &bull; 
 
-          SECOND CREDIT by <span class="credit-name">AUTHOR</span>
+          Second credit by <span class="credit-name">Author Name(s)</span>
 
         </div>
 
         <div class="sources">
-          Sources: <span class="credit-name">SOURCE</span>
+          Source: <span class="credit-name">Source Name</span>
         </div>
 
         <div class="thin-div">
@@ -122,6 +123,32 @@
       </a>
       <a class="share-bottom"></a>
     </footer>
+
+    <script>
+      <% 
+        var quizData = {};
+        json.PronunciationQuiz_Places.forEach(function(p) {
+          quizData[p.placeid] = { 
+            "place": p.place,
+            "desc": p.description,
+            "image": p.image
+          };
+        });
+        json.PronunciationQuiz_Answers.forEach(function(a, index) {
+          var id = a.placeid;
+          if (!quizData[id].answers) { quizData[id].answers = [] }
+          var answer = { 
+            "answer": a.answer,
+            "correct": a.correct,
+            "id": index,
+            "audio": a.audio
+          };
+          quizData[id].answers.push(answer);
+        });
+      %>
+      var quizData = <%= JSON.stringify(quizData) %>
+      var resultsData = <%= JSON.stringify(json.PronunciationQuiz_Results) %>
+    </script>
 
     <script src="app.js"></script>
     <% if (json.project.production) { %>
