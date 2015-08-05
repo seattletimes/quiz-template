@@ -1,0 +1,230 @@
+@import "values";
+
+//NAV
+nav.top-bar {
+  border-bottom: 1px solid @gray;
+
+  @media @mobile {
+    height: 40px;
+    width: 100%;
+  }
+
+  .logo {
+    position: relative;
+    top: 30px;
+    text-align: center;
+    display: block;
+
+    @media @mobile {
+      top: 20px;
+    }
+
+    img {
+      box-sizing: content-box;
+      height: 30px;
+      background: white;
+      padding: 10px;
+
+      @media @mobile {
+        padding: 5px;
+      }
+    }
+  }
+}
+
+.outer {
+  font-family: @body;
+  font-size: 18px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px;
+
+  @media @break {
+    font-size: 16px;
+    padding: 0;
+  }
+}
+
+.title {
+  color: @red;
+}
+
+header {
+  text-align: center;
+  padding: 27px 5px 5px;
+  margin: 0 auto;
+  max-width: 840px;
+
+  @media @tablet {
+    padding-left: 8px;
+    padding-right: 5px;
+  }
+
+  .chatter {
+    a {
+      color: @df-blue;
+
+      &:hover {
+        border-bottom: 2px solid;
+      }
+
+      &.share-button {
+        border: none;
+      }
+    }
+  }
+}
+
+.share-button, .share-results {
+  display: inline-block !important;
+  margin-top: 10px;
+
+  &.sharer-0 label {
+    color: @df-dark-gray !important;
+    background: @df-light-gray !important;
+    padding: 6px 10px !important;
+    border-radius: 0 !important;
+    margin-left: 2px;
+
+    &:hover {
+      background: @df-border-gray !important;
+      color: @df-charcoal !important;
+    }
+  }
+}
+
+.share-results {
+  position: absolute;
+  bottom: -75px;
+  left: 10px;
+}
+
+// GLOBAL TITLE AND CHATTER STYLES
+.title {
+  font-family: @special;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  font-size: 3em;
+  line-height: 1.2em;
+  margin: 5px auto;
+
+  @media @mobile {
+    font-size: 2.5em;
+    line-height: 1em;
+    margin-bottom: 0;
+  }
+}
+
+.chatter {
+  color: @dark-gray;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 0.5em auto 1em;
+}
+
+.quiz-container {
+  width: 840px;
+  margin: auto;
+
+  @media @break {
+    width: 100%;
+  }
+}
+
+.divider {
+  border: 4px solid @df-border-gray;
+}
+
+button {
+  background: @df-border-gray;
+  font-family: @block;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: default;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  font-size: 0.9em;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s linear;
+
+  @media @break {
+    padding: 8px 20px 10px 20px;
+  }
+
+  &.active {
+    background: @df-blue;
+    cursor: pointer;
+    
+    &:hover {
+      background: darken(@df-blue, 10%);
+    }
+  }
+}
+
+.credits, .sources {
+  font-size: 0.8em;
+  text-align: center;
+  padding: 15px;
+  padding-bottom: 0;
+
+  @media @tablet { 
+    margin-bottom: 0;
+  }
+
+  .credit-name {
+    font-weight: 700;
+  }
+}
+
+.sources {
+  margin-bottom: 10px;
+
+  a {
+    color: @df-blue;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.ad {
+  width: 750px;
+  margin: 0 auto;
+
+  @media @break {
+    display: none;
+  }
+}
+
+footer {
+  background: @df-charcoal;
+  opacity: 0.95;
+  padding: 0 10px;
+  position: relative;
+  z-index: 99;
+  margin-top: 30px;
+
+  @media @tablet {
+    margin-top: 0px;
+  }
+
+  .logo {
+    float: left;
+    margin-right: 10px; 
+    
+    img {
+      margin-top: 10px;
+      height: 20px;
+    }
+  }
+
+  &::after {
+    clear: both;
+    content: " ";
+    display: block;
+  }
+}

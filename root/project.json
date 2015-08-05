@@ -1,0 +1,21 @@
+{
+  "s3": {
+    "stage": {
+      "bucket": "apps-stage.seattletimesdata.com",
+      "path": "{%= staging_path %}"
+    },
+    "live": {
+      "bucket": "projects.seattletimes.com",
+      "path": "2015/quizzes/{%= s3_path %}"
+    }
+  },
+  "title": "",
+  "description": "",
+  "url": "http://projects.seattletimes.com/2015/quizzes/{%= s3_path %}/",
+  "slug": "",
+  "tags": [ "quiz" ],
+  "image": "http://seattletimes.com/art/ui/fb_icon_large.jpg",
+  "sheets": ["{%= spreadsheet_id %}"],
+  "production": false,
+  "embedded": true
+}
