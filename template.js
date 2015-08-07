@@ -23,6 +23,9 @@ exports.template = function(grunt, init, done) {
     var root = init.filesToCopy(props);
     init.copyAndProcess(root, props, {noProcess: "src/assets/**"});
     grunt.file.mkdir("data");
+    grunt.file.mkdir("./src/assets/quiz");
+    grunt.file.mkdir("./src/assets/results");
+    grunt.file.mkdir("./src/assets/elsewhere");
 
     //install node modules
     console.log("Installing Node modules...");
