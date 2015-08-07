@@ -48,7 +48,7 @@ var watchInput = function() {
 $(".quiz-container").on("click", ".submit", function() {
   // score answer
   var answerData = {};
-  answerData.place = quizData[id].place;
+  answerData.question = quizData[id].question;
   var correct = $("input:checked").val();
   if (correct) { 
     score += 1;
@@ -59,7 +59,6 @@ $(".quiz-container").on("click", ".submit", function() {
   quizData[id].answers.forEach(function(a) {
     if (a.correct) {
       answerData.correct = a.answer;
-      answerData.audio = a.audio;
       answerData.image = quizData[id].image;
       answerData.description = quizData[id].desc;
     }
@@ -101,17 +100,18 @@ var calculateResult = function() {
       } else if (result.score > 2) { 
         result.color = "#F5AE3F"
       } else {
-        result.color = "#DE5636"
+        result.color = "#e12329"
       }
+      result.total = Object.keys(quizData).length;
       new Share(".share-results", {
-        description: "I scored " + result.score + "/12! Think you can pronounce the names of these Washington places?",
+        description: "I scored " + result.score + "/" + result.total + "! Think you can pronounce the names of these Washington places?",
         image: "http://projects.seattletimes.com/2015/pronunciation-quiz/assets/fb_sequim.JPG",
         ui: {
           flyout: "bottom right"
         },
         networks: {
           email: {
-            description: "I scored " + result.score + "/12! Think you can pronounce the names of these Washington places? http://apps-stage.seattletimesdata.com/extensive-voodoo/"
+            description: "I scored " + result.score + "/" + result.total + "! Think you can pronounce the names of these Washington places? http://apps-stage.seattletimesdata.com/extensive-voodoo/"
           }
         }
       });
@@ -121,14 +121,14 @@ var calculateResult = function() {
 };
 
 elsewhereData.forEach(function(story) {
-  document.querySelector(".dont-miss").appendChild(
+  $(".dont-miss").append(
     `
       <div class="story">
         <div class="padded">
         <a href=${story.link}>
           <img src="./assets/elsewhere/${story.image}"></img>
         </a>
-          <div class="small">${story.category}/div>
+          <div class="small">${story.category}</div>
         <a href=${story.link}>
           <div>${story.title}</div>
         </a>
