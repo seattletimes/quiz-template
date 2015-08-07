@@ -38,7 +38,7 @@
       </header>
 
       <div class="quiz-container">
-        
+
         <div class="divider"></div>
 
         <div class="quiz-box"> 
@@ -68,53 +68,7 @@
           <div class="center">Don't Miss</div>
         </div>
 
-        <div class="dont-miss">
-
-          <div class="story">
-            <div class="padded">
-              <a href="http://projects.seattletimes.com/2015/seahawks-personality-quiz/">
-                <img src="./assets/seahawks_quiz.JPG"></img>
-              </a>
-                <div class="small">Personality quiz</div>
-              <a href="http://projects.seattletimes.com/2015/seahawks-personality-quiz/">
-                <div>Which Seahawk are you?</div>
-              </a>
-            </div>
-          </div>
-          <div class="story">
-            <div class="padded">
-            <a href="http://www.seattletimes.com/photo-video/art-of-movement-competes-in-breakdancing-battle/">
-              <img src="./assets/breakin_tzr.jpeg"></img>
-            </a>
-              <div class="small">Video</div>
-            <a href="http://www.seattletimes.com/photo-video/art-of-movement-competes-in-breakdancing-battle/">
-              <div>Breakin': Art of Movement competes in breakdancing battle</div>
-            </a>
-            </div>
-          </div>
-          <div class="story">
-            <div class="padded">
-            <a href="http://projects.seattletimes.com/2015/seattle-architecture-quiz/">
-              <img src="./assets/architecture_quiz.JPG"></img>
-            </a>
-              <div class="small">Photo quiz</div>
-            <a href="http://projects.seattletimes.com/2015/seattle-architecture-quiz/">
-              <div>How well do you know Seattle's architecture?</div>
-            </a>
-            </div>
-          </div>
-          <div class="story">
-            <div class="padded">
-            <a href="http://www.seattletimes.com/seattle-news/data/does-everyone-in-seattle-drive-a-subaru/">
-              <img src="./assets/subaru.jpg"></img>
-            </a>
-              <div class="small">FYI Guy</div>
-            <a href="http://www.seattletimes.com/seattle-news/data/does-everyone-in-seattle-drive-a-subaru/">
-              <div>Does everyone in Seattle drive a Subaru?</div>
-            </a>
-            </div>
-          </div>
-        </div>
+        <div class="dont-miss"></div>
 
         <%= t.include("partials/_ad.html", { type: "bannerBottom" }) %>
       </div>
@@ -150,6 +104,7 @@
       %>
       var quizData = <%= JSON.stringify(quizData) %>
       var resultsData = <%= JSON.stringify(json.TestQuiz2015_Results) %>
+      var elsewhereData = <%= JSON.stringify(json.TestQuiz2015_Elsewhere) %>
     </script>
 
     <script src="app.js"></script>
