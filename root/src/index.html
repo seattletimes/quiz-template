@@ -38,6 +38,9 @@
       </header>
 
       <div class="quiz-container">
+        
+        <div class="divider"></div>
+
         <div class="quiz-box"> 
 
           <!-- START OF QUIZ -->
@@ -127,27 +130,26 @@
     <script>
       <% 
         var quizData = {};
-        json.PronunciationQuiz_Places.forEach(function(p) {
-          quizData[p.placeid] = { 
-            "place": p.place,
-            "desc": p.description,
-            "image": p.image
+        json.TestQuiz2015_Questions.forEach(function(q) {
+          quizData[q.id] = { 
+            "question": q.question,
+            "desc": q.description,
+            "image": q.image
           };
         });
-        json.PronunciationQuiz_Answers.forEach(function(a, index) {
-          var id = a.placeid;
+        json.TestQuiz2015_Answers.forEach(function(a, index) {
+          var id = a.id;
           if (!quizData[id].answers) { quizData[id].answers = [] }
           var answer = { 
             "answer": a.answer,
             "correct": a.correct,
-            "id": index,
-            "audio": a.audio
+            "id": index
           };
           quizData[id].answers.push(answer);
         });
       %>
       var quizData = <%= JSON.stringify(quizData) %>
-      var resultsData = <%= JSON.stringify(json.PronunciationQuiz_Results) %>
+      var resultsData = <%= JSON.stringify(json.TestQuiz2015_Results) %>
     </script>
 
     <script src="app.js"></script>

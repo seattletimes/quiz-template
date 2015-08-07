@@ -1,34 +1,47 @@
-@import "values";
-
-.quiz-button {
-  font-size: 18px;
-  background: @red;
-  cursor: pointer;
-  display: inherit;
-  text-transform: uppercase;
-  width: 161px;
-  height: 42px;
+.quiz-container {
+  width: 840px;
   margin: auto;
-  margin-bottom: 25px;
 
   @media @break {
-    font-size: 16px;
-    padding-top: 8px;
-    width: 165px;
-  }
-
-  &:hover {
-    background: @df-middle-gray;
+    width: 100%;
   }
 }
 
-.question-box {
-  margin-bottom: 1em;
+button {
+  background: @df-border-gray;
+  font-family: @body;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: default;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  font-size: 0.9em;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s linear;
 
+  @media @break {
+    padding: 8px 20px 10px 20px;
+  }
+
+  &.active {
+    background: @submit-color;
+    cursor: pointer;
+    
+    &:hover {
+      background: darken(@submit-color, 10%);
+    }
+  }
+}
+
+.index {
+  color: @df-middle-gray;
+  font-size: 14px;
+}
+
+.question-box {
   .inner {
-    padding-top: 25px;
-    border-top: 8px solid @df-border-gray;
-    padding-bottom: 25px;
+    padding: 25px 0;
 
     @media @break {
       padding: 25px 40px;
@@ -43,7 +56,7 @@
     }
   }
 
-  .map {
+  .inset-image {
     margin-left: 40px;
     width: 200px;
     float: left;
@@ -60,25 +73,17 @@
     }
 
     .question, .answer {
-      font-family: @block;
       font-weight: 600;
       font-size: 1.4em;
-      color: @dark-gray;
     }
 
     .answer {
-
       .answer-box {
         margin-top: 10px;
         margin-bottom: 15px;
 
         .correct-answer {
           font-size: 24px;
-
-          .fa-volume-up {
-            font-size: 20px;
-          }
-
         }
 
         .description {
@@ -103,13 +108,13 @@
 
       &:checked + label::before {
         content: "\f111";
-        color: @red;
+        color: @radio-color;
       }
     }
 
     label {
       cursor: pointer;
-      color: @dark-gray;
+      color: @body-color;
       font-weight: 600;
 
       @media @mobile {
@@ -118,42 +123,20 @@
         padding-right: 0;
       }
     }
-
-    .listen {
-      padding: 5px;
-      color: @df-charcoal;
-      cursor: pointer;
-
-      &:hover {
-        color: @red;
-        border-color: @gray;
-      }
-    }
-  }
-
-  .index {
-    color: @gray;
-    font-size: 14px;
   }
 
   .result-name {
-    font-family: @block;
     font-weight: 600;
-    color: @dark-gray;
     font-size: 1.4em;
     line-height: 1.2em;
     margin: 10px 0;
-  }
-
-  .result {
-    color: @red;
   }
 
   .result-description {
     font-family: @body;
     margin: 0 auto 1em auto;
     font-size: 1.1em;
-    color: @dark-gray;
+    color: @body-color;
   }
 
   .results-image {
