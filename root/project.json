@@ -14,7 +14,7 @@
   "url": "http://projects.seattletimes.com/2015/quizzes/{%= s3_path %}/",
   "slug": "",
   "tags": [ "quiz" ],
-  "image": "http://seattletimes.com/art/ui/fb_icon_large.jpg",
+  "image": "assets/social.jpg",
   "sheets": ["{%= spreadsheet_id %}"],
   "production": false,
   "embedded": true

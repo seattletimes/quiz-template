@@ -19,14 +19,12 @@ ich.addTemplate("overviewTemplate", overviewTemplate);
 
 var Share = require("share");
 new Share(".share-button", {
-  description: "Think you can pronounce the names of Washington places? Test your local knowledge with our quiz.",
-  image: "http://projects.seattletimes.com/2015/pronunciation-quiz/assets/fb_sequim.JPG",
   ui: {
     flyout: "top center"
   },
   networks: {
     email: {
-      description: "Think you can pronounce the names of Washington places? Test your local knowledge with our quiz. http://apps-stage.seattletimesdata.com/extensive-voodoo/"
+      description: [document.querySelector(`meta[property="og:description"]`).innerHTML, window.location.href].join("\n");
     }
   }
 });
@@ -96,22 +94,21 @@ var calculateResult = function() {
       // display result
       result.score = score;
       if (result.score > 5) { 
-        result.color = "#589040"
+        result.color = "#589040";
       } else if (result.score > 2) { 
-        result.color = "#F5AE3F"
+        result.color = "#F5AE3F";
       } else {
-        result.color = "#e12329"
+        result.color = "#e12329";
       }
       result.total = Object.keys(quizData).length;
       new Share(".share-results", {
-        description: "I scored " + result.score + "/" + result.total + "! Think you can pronounce the names of these Washington places?",
-        image: "http://projects.seattletimes.com/2015/pronunciation-quiz/assets/fb_sequim.JPG",
+        description: "I scored " + result.score + "/" + result.total + "! " + document.querySelector(`meta[property="og:description"]`).innerHTML,
         ui: {
           flyout: "bottom right"
         },
         networks: {
           email: {
-            description: "I scored " + result.score + "/" + result.total + "! Think you can pronounce the names of these Washington places? http://apps-stage.seattletimesdata.com/extensive-voodoo/"
+            description: "I scored " + result.score + "/" + result.total + "! " + [document.querySelector(`meta[property="og:description"]`).innerHTML, window.location.href].join("\n");
           }
         }
       });

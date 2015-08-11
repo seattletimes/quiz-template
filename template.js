@@ -14,9 +14,6 @@ exports.template = function(grunt, init, done) {
     init.prompt("spreadsheet_id")
   ], function(err, props) {
     //add environment variables, dynamic properties
-    props.s3_key = process.env.AWS_ACCESS_KEY_ID || "";
-    props.s3_secret = process.env.AWS_SECRET_ACCESS_KEY || "";
-    props.s3_region = process.env.AWS_DEFAULT_REGION || "us-west-1";
     props.github_repo = "seattletimes/" + here;
     props.s3_path = [new Date().getFullYear(), "quizzes", props.app_name].join("/");
 

@@ -80,7 +80,7 @@
 
         <div class="dont-miss"></div>
 
-        <%= t.include("partials/_ad.html", { type: "bannerBottom" }) %>
+        <div class="bottom-ad"><%= t.include("partials/_ad.html", { type: "bannerBottom" }) %></div>
       </div>
     </div>
 
@@ -112,9 +112,14 @@
           quizData[id].answers.push(answer);
         });
       %>
-      var quizData = <%= JSON.stringify(quizData) %>
-      var resultsData = <%= JSON.stringify(json.TestQuiz2015_Results) %>
-      var elsewhereData = <%= JSON.stringify(json.TestQuiz2015_Elsewhere) %>
+      var quizData = <%= JSON.stringify(quizData) %>;
+      var resultsData = <%= JSON.stringify(json.TestQuiz2015_Results) %>;
+      var elsewhereData = <%= JSON.stringify(json.TestQuiz2015_Elsewhere) %>;
+      var configData = {
+        title: "<%= json.project.title %>",
+        description: "<%= json.project.description %>",
+        url: "<%= json.project.url %>"
+      }
     </script>
 
     <script src="app.js"></script>
