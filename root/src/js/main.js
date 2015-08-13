@@ -24,7 +24,7 @@ new Share(".share-button", {
   },
   networks: {
     email: {
-      description: [document.querySelector(`meta[property="og:description"]`).innerHTML, window.location.href].join("\n");
+      description: [document.querySelector(`meta[property="og:description"]`).innerHTML, window.location.href].join("\n")
     }
   }
 });
@@ -101,18 +101,21 @@ var calculateResult = function() {
         result.color = "#e12329";
       }
       result.total = Object.keys(quizData).length;
+
+      $(".question-box").html(ich.overviewTemplate(result));
+      
       new Share(".share-results", {
         description: "I scored " + result.score + "/" + result.total + "! " + document.querySelector(`meta[property="og:description"]`).innerHTML,
         ui: {
-          flyout: "bottom right"
+          flyout: "bottom right",
+          button_text: "Share results"
         },
         networks: {
           email: {
-            description: "I scored " + result.score + "/" + result.total + "! " + [document.querySelector(`meta[property="og:description"]`).innerHTML, window.location.href].join("\n");
+            description: "I scored " + result.score + "/" + result.total + "! " + [document.querySelector(`meta[property="og:description"]`).innerHTML, window.location.href].join("\n")
           }
         }
       });
-      $(".question-box").html(ich.overviewTemplate(result));
     }
   }
 };

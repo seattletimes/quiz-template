@@ -100,15 +100,11 @@
 // Share buttons
 
 .share-button, .share-results {
-  margin: auto;
-  margin-top: 10px;
-
   &.sharer-0 label {
+    padding: 6px 10px !important;
+    margin-left: 2px;
     color: @df-dark-gray !important;
     background: @df-light-gray !important;
-    padding: 6px 10px !important;
-    border-radius: 0 !important;
-    margin-left: 2px;
 
     &:hover {
       background: @df-border-gray !important;
@@ -117,10 +113,17 @@
   }
 }
 
+.share-button {
+  margin: auto;
+  margin-top: 10px;
+
+}
 .share-results {
-  position: absolute;
-  bottom: -75px;
-  left: 10px;
+  margin-top: 10px;
+
+  &.sharer-0 {
+    width: 150px !important;
+  }
 }
 
 // Bottom

@@ -12,10 +12,9 @@ button {
   font-family: @body;
   font-weight: 600;
   text-transform: uppercase;
-  cursor: default;
   color: white;
   border: none;
-  padding: 4px 10px;
+  padding: 5px 10px;
   font-size: 0.9em;
   -webkit-font-smoothing: antialiased;
   transition: background 0.2s linear;
@@ -40,6 +39,8 @@ button {
 }
 
 .question-box {
+  padding: 0 30px;
+  
   .inner {
     padding: 30px 0;
 
@@ -49,10 +50,6 @@ button {
 
     @media @mobile {
       padding: 25px 15px;
-    }
-
-    &.overview {
-      padding-top: 75px;
     }
   }
 
@@ -137,6 +134,7 @@ button {
     margin: 0 auto 1em auto;
     font-size: 1.1em;
     color: @body-color;
+    padding-bottom: 10px;
   }
 
   .results-image {
