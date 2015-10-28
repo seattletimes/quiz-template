@@ -74,7 +74,7 @@ module.exports = function(grunt) {
               });
               rows = obj;
             }
-            var filename = "data/" + camelCase(book.title) + "_" + camelCase(page.title) + ".sheet.json";
+            var filename = "data/Quiz_" + camelCase(page.title) + ".sheet.json";
             grunt.file.write(filename, JSON.stringify(rows, null, 2));
             pageDone();
           });

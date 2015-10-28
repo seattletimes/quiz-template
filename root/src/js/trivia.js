@@ -1,13 +1,10 @@
-require("./lib/social");
-require("./lib/ads");
-var track = require("./lib/tracking");
-
 var $ = require("jquery");
 var ich = require("icanhaz");
 var Share = require("share");
+
 var questionTemplate = require("./_questionTemplate.html");
 var resultTemplate = require("./_resultTemplate.html");
-var overviewTemplate = require("./_overviewTemplate.html");
+var overviewTemplate = require("./_overviewTriviaTemplate.html");
 
 var score = 0;
 var id = 1;
@@ -17,7 +14,6 @@ ich.addTemplate("questionTemplate", questionTemplate);
 ich.addTemplate("resultTemplate", resultTemplate);
 ich.addTemplate("overviewTemplate", overviewTemplate);
 
-var Share = require("share");
 new Share(".share-button", {
   ui: {
     flyout: "top center"
@@ -67,7 +63,7 @@ $(".quiz-container").on("click", ".submit", function() {
 
   // Change button text on last question
   if (id == Object.keys(quizData).length) {
-    $(".next").html("See results");
+    $(".next").html("Finish");
   }
   watchNext();
 });

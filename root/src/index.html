@@ -28,11 +28,11 @@
         
         <h1 class="title">
 
-            TITLE 
+            TITLE GOES
 
           <div class="secondary">
 
-            GOES HERE
+            HERE
 
           </div>
 
@@ -94,14 +94,14 @@
     <script>
       <% 
         var quizData = {};
-        json.TestQuiz2015_Questions.forEach(function(q) {
+        json.Quiz_Questions.forEach(function(q) {
           quizData[q.id] = { 
             "question": q.question,
             "desc": q.description,
             "image": q.image
           };
         });
-        json.TestQuiz2015_Answers.forEach(function(a, index) {
+        json.Quiz_Answers.forEach(function(a, index) {
           var id = a.id;
           if (!quizData[id].answers) { quizData[id].answers = [] }
           var answer = { 
@@ -113,8 +113,8 @@
         });
       %>
       var quizData = <%= JSON.stringify(quizData) %>;
-      var resultsData = <%= JSON.stringify(json.TestQuiz2015_Results) %>;
-      var elsewhereData = <%= JSON.stringify(json.TestQuiz2015_Elsewhere) %>;
+      var resultsData = <%= JSON.stringify(json.Quiz_Results) %>;
+      var elsewhereData = <%= JSON.stringify(json.Quiz_Elsewhere) %>;
       var configData = {
         title: "<%= json.project.title %>",
         description: "<%= json.project.description %>",

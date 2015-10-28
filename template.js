@@ -11,6 +11,7 @@ exports.template = function(grunt, init, done) {
     init.prompt("author_name"),
     init.prompt("app_name", here),
     init.prompt("app_description"),
+    init.prompt("quiz_type"),
     init.prompt("spreadsheet_id")
   ], function(err, props) {
     //add environment variables, dynamic properties

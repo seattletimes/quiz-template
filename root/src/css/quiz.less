@@ -33,6 +33,10 @@ button {
   }
 }
 
+.quiz-box {
+  padding: 30px 10px;
+}
+
 .index {
   color: @df-middle-gray;
   font-size: 14px;
@@ -42,7 +46,6 @@ button {
   padding: 0 30px;
   
   .inner {
-    padding: 30px 0;
 
     @media @break {
       padding: 25px 40px;
@@ -121,29 +124,32 @@ button {
       }
     }
   }
+}
 
-  .result-name {
-    font-weight: 600;
-    font-size: 1.4em;
-    line-height: 1.2em;
-    margin: 10px 0;
-  }
+.result-name {
+  font-weight: 600;
+  font-size: 1.4em;
+  line-height: 1.2em;
+  margin: 10px 0;
+}
 
-  .result-description {
-    font-family: @body;
-    margin: 0 auto 1em auto;
-    font-size: 1.1em;
-    color: @body-color;
-    padding-bottom: 10px;
-  }
+.result-description {
+  font-family: @body;
+  margin: 0 auto 1em auto;
+  font-size: 1.1em;
+  color: @body-color;
+  padding-bottom: 10px;
+}
 
-  .results-image {
-    width: 100%;
+.results-image {
+  width: 100%;
+  clear: both;
 
-    .photo-credit {
-      font-size: 12px;
-      text-transform: uppercase;
-      margin: 0;
-    }
+  .photo-credit {
+    font-size: 12px;
+    color: @df-middle-gray;
+    text-transform: uppercase;
+    margin: 0;
   }
 }
+
