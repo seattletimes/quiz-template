@@ -6,12 +6,12 @@
     },
     "live": {
       "bucket": "projects.seattletimes.com",
-      "path": "2015/quizzes/{%= s3_path %}"
+      "path": "{%= s3_path %}"
     }
   },
   "title": "",
   "description": "",
-  "url": "http://projects.seattletimes.com/2015/quizzes/{%= s3_path %}/",
+  "url": "http://projects.seattletimes.com/{%= s3_path %}/",
   "slug": "",
   "tags": [ "quiz" ],
   "image": "assets/social.jpg",
