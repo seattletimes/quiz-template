@@ -52,9 +52,9 @@ $(".quiz-container").on("click", ".submit", function() {
   // keep track of selected answer
   quizData[id].answers.forEach(function(a) {
     if (a.correct) {
-      answerData.correct = a.answer;
+      answerData.answer = a.answer;
       answerData.image = quizData[id].image;
-      answerData.description = quizData[id].desc;
+      answerData.description = quizData[id].correct;
     }
   });
 
