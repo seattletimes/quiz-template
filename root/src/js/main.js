@@ -64,7 +64,7 @@ var id = 1;
       if (a.correct) {
         answerData.answer = a.answer;
         answerData.image = quizData[id].image;
-        answerData.description = quizData[id].correct;
+        answerData.description = a.correct;
       }
     });
 
