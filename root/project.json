@@ -17,5 +17,5 @@
   "image": "assets/social.jpg",
   "sheets": ["{%= spreadsheet_id %}"],
   "production": false,
-  "embedded": true
+  "embedded": false
 }
