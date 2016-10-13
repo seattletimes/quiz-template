@@ -64,7 +64,7 @@ var id = 1;
       if (a.correct) {
         answerData.answer = a.answer;
         answerData.image = quizData[id].image;
-        answerData.description = quizData[id].correct;
+        answerData.description = a.correct;
       }
     });
 
@@ -110,14 +110,14 @@ var id = 1;
         $(".question-box").html(ich.overviewTemplate(result));
         
         new Share(".share-results", {
-          description: "I scored " + result.score + "/" + result.total + "! " + document.querySelector(`meta[property="og:description"]`).innerHTML,
+          description: "I scored " + result.score + "/" + result.total + "! " + document.querySelector(`meta[property="og:description"]`).content,
           ui: {
             flyout: "bottom right",
             button_text: "Share results"
           },
           networks: {
             email: {
-              description: "I scored " + result.score + "/" + result.total + "! " + [document.querySelector(`meta[property="og:description"]`).innerHTML, window.location.href].join("\n")
+              description: "I scored " + result.score + "/" + result.total + "! " + [document.querySelector(`meta[property="og:description"]`).content, window.location.href].join("\n")
             }
           }
         });
