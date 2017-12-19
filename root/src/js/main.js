@@ -14,8 +14,8 @@ ich.addTemplate("questionTemplate", questionTemplate);
 ich.addTemplate("overviewTemplate", overviewTemplate);
 
 {% if (quiz_type == "trivia") { %}
-  var resultTemplate = require("./_resultTemplate.html");
-  ich.addTemplate("resultTemplate", resultTemplate);
+var resultTemplate = require("./_resultTemplate.html");
+ich.addTemplate("resultTemplate", resultTemplate);
 {% } %}
 
 new Share(".share-button", {
@@ -47,156 +47,156 @@ var id = 1;
 
 {% if (quiz_type == "trivia") { %}
 
-  var score = 0;
+var score = 0;
 
-  $(".quiz-container").on("click", ".submit", function() {
-    // score answer
-    var answerData = {};
-    answerData.question = quizData[id].question;
-    var correct = $("input:checked").val();
-    if (correct) { 
-      score += 1;
-      answerData.hooray = true;
+$(".quiz-container").on("click", ".submit", function() {
+  // score answer
+  var answerData = {};
+  answerData.question = quizData[id].question;
+  var correct = $("input:checked").val();
+  if (correct) { 
+    score += 1;
+    answerData.hooray = true;
+  }
+
+  // keep track of selected answer
+  quizData[id].answers.forEach(function(a) {
+    if (a.correct) {
+      answerData.answer = a.answer;
+      answerData.image = quizData[id].image;
+      answerData.description = a.correct;
     }
-
-    // keep track of selected answer
-    quizData[id].answers.forEach(function(a) {
-      if (a.correct) {
-        answerData.answer = a.answer;
-        answerData.image = quizData[id].image;
-        answerData.description = a.correct;
-      }
-    });
-
-    $(".question-box").html(ich.resultTemplate(answerData));
-    $(".index").html(id + " of " + Object.keys(quizData).length);
-
-    // Change button text on last question
-    if (id == Object.keys(quizData).length) {
-      $(".next").html("Finish");
-    }
-    watchNext();
   });
 
-  var watchNext = function() {
-    $(".next").click(function() {
-      if (id < Object.keys(quizData).length) {
-        // move on to next question
-        id += 1;
-        showQuestion(id);
-        $(".next").removeClass("active");
-        $(".next").attr("disabled", true);
-      } else {
-        calculateResult();
-      }
-    });
-  };
+  $(".question-box").html(ich.resultTemplate(answerData));
+  $(".index").html(id + " of " + Object.keys(quizData).length);
 
-  var calculateResult = function() {
-    for (var index in resultsData) {
-      var result = resultsData[index];
-      if (score >= result.min && score <= result.max) {
-        // display result
-        result.score = score;
-        if (result.score > 5) { 
-          result.color = "#589040";
-        } else if (result.score > 2) { 
-          result.color = "#F5AE3F";
-        } else {
-          result.color = "#e12329";
-        }
-        result.total = Object.keys(quizData).length;
+  // Change button text on last question
+  if (id == Object.keys(quizData).length) {
+    $(".next").html("Finish");
+  }
+  watchNext();
+});
 
-        $(".question-box").html(ich.overviewTemplate(result));
-        
-        new Share(".share-results", {
-          description: "I scored " + result.score + "/" + result.total + "! " + document.querySelector(`meta[property="og:description"]`).content,
-          ui: {
-            flyout: "bottom right",
-            button_text: "Share results"
-          },
-          networks: {
-            email: {
-              description: "I scored " + result.score + "/" + result.total + "! " + [document.querySelector(`meta[property="og:description"]`).content, window.location.href].join("\n")
-            }
-          }
-        });
-      }
+var watchNext = function() {
+  $(".next").click(function() {
+    if (id < Object.keys(quizData).length) {
+      // move on to next question
+      id += 1;
+      showQuestion(id);
+      $(".next").removeClass("active");
+      $(".next").attr("disabled", true);
+    } else {
+      calculateResult();
     }
-  };
+  });
+};
+
+var calculateResult = function() {
+  for (var index in resultsData) {
+    var result = resultsData[index];
+    if (score >= result.min && score <= result.max) {
+      // display result
+      result.score = score;
+      if (result.score > 5) { 
+        result.color = "#589040";
+      } else if (result.score > 2) { 
+        result.color = "#F5AE3F";
+      } else {
+        result.color = "#e12329";
+      }
+      result.total = Object.keys(quizData).length;
+
+      $(".question-box").html(ich.overviewTemplate(result));
+      
+      new Share(".share-results", {
+        description: "I scored " + result.score + "/" + result.total + "! " + document.querySelector(`meta[property="og:description"]`).content,
+        ui: {
+          flyout: "bottom right",
+          button_text: "Share results"
+        },
+        networks: {
+          email: {
+            description: "I scored " + result.score + "/" + result.total + "! " + [document.querySelector(`meta[property="og:description"]`).content, window.location.href].join("\n")
+          }
+        }
+      });
+    }
+  }
+};
 
 {% } else if (quiz_type == "personality") { %}
 
-  var scores = {};
+var scores = {};
 
-  $(".question-box").on("click", ".submit", function() {
-      // score answer
-      var options = $("input:checked").val().split(" ");
-      options.forEach(function(option) {
-        if (option === "") return;
-        if (!scores[option]) { scores[option] = 0 }
-        scores[option] += 1;
+$(".question-box").on("click", ".submit", function() {
+    // score answer
+    var options = $("input:checked").val().split(" ");
+    options.forEach(function(option) {
+      if (option === "") return;
+      if (!scores[option]) { scores[option] = 0 }
+      scores[option] += 1;
+    });
+
+    if (id < Object.keys(quizData).length) {
+      // move on to next question
+      id += 1;
+      showQuestion(id);
+      $(".submit").removeClass("active");
+      $(".submit").attr("disabled", true);
+      // Change button text on last question
+      if (id == Object.keys(quizData).length) {
+        $(".submit").html("Finish");
+      }
+    } else {
+      calculateResult();
+    }
+  });
+
+var calculateResult = function() {
+  // find highest match(es)
+  var highestScore = 0;
+  for (var option in scores) {
+    if (scores[option] >= highestScore) {
+      highestScore = scores[option];
+    }
+  }
+
+  //loop again to find ties
+  var highestOptions = [];
+  for (var option in scores) {
+    if (scores[option] == highestScore) {
+      highestOptions.push(option);
+    }
+  }
+
+  var random = Math.round(Math.random() * (highestOptions.length - 1));
+  var resultId = highestOptions[random];
+  var result;
+  resultsData.forEach(function(option) {
+    if (option.id != resultId) return;
+    result = option;
+  });
+
+  // display result
+  $(".quiz-box").html(ich.overviewTemplate(result));
+
+  $(".retake").removeClass("hidden");
+  new Share(".share-button", {
+        description: "I got " + result.title + "! " + document.querySelector(`meta[property="og:description"]`).innerHTML,
+        ui: {
+          flyout: "bottom right",
+          button_text: "Share results"
+        },
+        networks: {
+          email: {
+            description: "I got " + result.title + "! " + [document.querySelector(`meta[property="og:description"]`).innerHTML, window.location.href].join("\n")
+          }
+        }
       });
 
-      if (id < Object.keys(quizData).length) {
-        // move on to next question
-        id += 1;
-        showQuestion(id);
-        $(".submit").removeClass("active");
-        $(".submit").attr("disabled", true);
-        // Change button text on last question
-        if (id == Object.keys(quizData).length) {
-          $(".submit").html("Finish");
-        }
-      } else {
-        calculateResult();
-      }
-    });
-
-  var calculateResult = function() {
-    // find highest match(es)
-    var highestScore = 0;
-    for (var option in scores) {
-      if (scores[option] >= highestScore) {
-        highestScore = scores[option];
-      }
-    }
-
-    //loop again to find ties
-    var highestOptions = [];
-    for (var option in scores) {
-      if (scores[option] == highestScore) {
-        highestOptions.push(option);
-      }
-    }
-
-    var random = Math.round(Math.random() * (highestOptions.length - 1));
-    var resultId = highestOptions[random];
-    var result;
-    resultsData.forEach(function(option) {
-      if (option.id != resultId) return;
-      result = option;
-    });
-
-    // display result
-    $(".quiz-box").html(ich.overviewTemplate(result));
-
-    $(".retake").removeClass("hidden");
-    new Share(".share-button", {
-          description: "I got " + result.title + "! " + document.querySelector(`meta[property="og:description"]`).innerHTML,
-          ui: {
-            flyout: "bottom right",
-            button_text: "Share results"
-          },
-          networks: {
-            email: {
-              description: "I got " + result.title + "! " + [document.querySelector(`meta[property="og:description"]`).innerHTML, window.location.href].join("\n")
-            }
-          }
-        });
-
-    $(".share-button").addClass("share-results");
-  };
+  $(".share-button").addClass("share-results");
+};
 
 {% } %}
 

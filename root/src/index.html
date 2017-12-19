@@ -86,20 +86,13 @@
       <% 
         var quizData = {};
         json.Quiz_Questions.forEach(function(q) {
-          quizData[q.id] = { 
-            "question": q.question,
-            "image": q.image
-          };
+          quizData[q.id] = q;
         });
         json.Quiz_Answers.forEach(function(a, index) {
           var id = a.id;
+          a.index = index;
           if (!quizData[id].answers) { quizData[id].answers = [] }
-          var answer = { 
-            "answer": a.answer,
-            "correct": a.correct,
-            "id": index
-          };
-          quizData[id].answers.push(answer);
+          quizData[id].answers.push(a);
         });
       %>
       var quizData = <%= JSON.stringify(quizData) %>;
