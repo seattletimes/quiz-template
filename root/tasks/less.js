@@ -9,12 +9,17 @@ module.exports = function(grunt) {
   var async = require("async");
   var less = require("less");
   
+  var path = require("path");
+  var through = require("through2");
+  var npmImporter = require("./lib/npm-less");
+
   var options = {
     paths: ["src/css"],
-    filename: "seed.less"
+    filename: "seed.less",
+    plugins: [npmImporter]
   };
   
-  grunt.registerTask("less", function() {
+  grunt.registerTask("less", "Compile styles from src/css/seed.less", function() {
     
     var done = this.async();
 
